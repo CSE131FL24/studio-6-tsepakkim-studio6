@@ -12,11 +12,13 @@ public class RecursiveMethods {
 	 *         ...)
 	 */
 	public static double geometricSum(int n) {
-		
-			// FIXME compute the geometric sum for the first n terms recursively
-			return 0;
-		
+		if (n == 0) {
+			return 0.0;
+		} else {
+			return Math.pow(0.5, n) + geometricSum(n - 1);
+		}
 	}
+			// FIXME compute the geometric sum for the first n terms recursively
 	
 	/**
 	 * @param xCenter                       x-coordinate of the center of the circle
@@ -29,7 +31,7 @@ public class RecursiveMethods {
 	 */
 	public static void circlesUponCircles(double xCenter, double yCenter, double radius,
 			double radiusMinimumDrawingThreshold) {
-		
+	
 		// FIXME
 	}
 
@@ -40,12 +42,20 @@ public class RecursiveMethods {
 	 * @return an array with the same data as the input but it reverse order
 	 */
 	public static int[] toReversed(int[] array) {
-		
-			// FIXME create a helper method that can recursively reverse the given array
-			return new int[0];
-		
+			int[] reversedArray = new int[array.length];
+			reverseHelper(array, reversedArray, 0);
+			return reversedArray;
 	}
-	
+			// FIXME create a helper method that can recursively reverse the given array
+			//return new int[0];
+	private static void reverseHelper(int[] original, int[] reversed, int index) {  
+		        if (index >= original.length) {
+		            return;
+		        }
+		        reversed[original.length - 1 - index] = original[index];
+		        reverseHelper(original, reversed, index + 1);
+	}
+    
 	/**
 	 * This method uses recursion to compute the greatest common divisor
 	 * for the two input values
@@ -55,9 +65,11 @@ public class RecursiveMethods {
 	 * @return greatest common divisor of p and q
 	 */
 	public static int gcd(int p, int q) {
-		
+			if (q == 0) {
+				return p;
+			}
 			// FIXME compute the gcd of p and q using recursion
-			return 0;
+			return gcd(q, p % q);
 		
 	}
 
